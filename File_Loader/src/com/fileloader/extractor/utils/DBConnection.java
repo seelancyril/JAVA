@@ -18,11 +18,6 @@ public class DBConnection {
 
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(host, username,password);
-//            Statement stmt=con.createStatement();
-//            ResultSet rs=stmt.executeQuery("select table_name from information_schema.tables where table_schema='"+schema+"'");
-//            while (rs.next()){
-//                System.out.println(rs.getString(1));
-//            }
         }
         catch (SQLException e){
             System.out.println("failed - exception: " + e.getMessage());

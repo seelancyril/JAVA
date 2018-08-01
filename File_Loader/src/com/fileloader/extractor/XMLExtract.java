@@ -11,7 +11,7 @@ public class XMLExtract {
         String schema = jp.getValue("db.schema.name", "DBO");
         Extractor newjob = new Extractor(schema);
         newjob.countTableRows();
-        newjob.runExtractor();
+//        newjob.runExtractor();
     }
 
 }
