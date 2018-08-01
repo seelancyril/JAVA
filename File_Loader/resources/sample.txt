@@ -1,0 +1,5 @@
+The File class is Java’s representation of a file or directory path name. 
+Because file and directory names have different formats on different platforms, 
+a simple string is not adequate to name them. The File class contains several methods for working with the path name,
+ deleting and renaming files, creating new directories, listing the contents of a directory,
+  and determining several common attributes of files and directories.
