@@ -29,7 +29,7 @@ public class Extractor {
     private static Map<String, Integer> tables = new HashMap<String, Integer>();
     private static Statement stmt = null;
     private static ResultSet rs = null;
-    private static ResultSet rs_columns = null;
+    private static ResultSetMetaData rs_columns = null;
     private String tableschema;
 
     public Extractor(String schema){
@@ -49,9 +49,13 @@ public class Extractor {
     }
 
     public void runExtractor(JobProperties jp) throws Exception{
+        Map<Integer, String> columnNames = new LinkedHashMap<Integer, String>();
         for(String tablename : tables.keySet() ){
             String tablename_formatted = formatName(tablename);
-            rs_columns = stmt.executeQuery("select column_name from information_schema.columns where table_name='"+tablename+"'");
+            rs = stmt.executeQuery("select * from "+ tablename);
+//            rs_columns = stmt.executeQuery("select column_name from information_schema.columns where table_name='"+tablename+"'");
+            rs_columns = rs.getMetaData();
+            int colcount = rs_columns.getColumnCount();
             System.out.println("Extraction started for table: "+tablename_formatted);
             String filepath = jp.getValue("app.outputfiles.location", "");
             String filename = filepath + tableschema.toUpperCase() + "-" + tablename.toUpperCase() + "-0000" + ".xml";
@@ -64,15 +68,25 @@ public class Extractor {
             writer.writeStartElement(tableschema.toUpperCase());
             writer.writeCharacters("\n\t");
             writer.writeStartElement(tablename.toUpperCase());
-            writer.writeCharacters("\n\t\t");
-            writer.writeStartElement("ROW");
-            while(rs_columns.next()){
-                writer.writeCharacters("\n\t\t\t");
-                writer.writeStartElement(rs_columns.getString(1).toUpperCase());
+
+            while(rs.next()){
+                writer.writeCharacters("\n\t\t");
+                writer.writeStartElement("ROW");
+                for(int i=1; i<=colcount;i++) {
+//                    columnNames.clear();
+//                    columnNames.put(i, Extractor.formatName(rs_columns.getColumnName(i)));
+                    Object columnvalue = rs.getObject(i) == null ? "" :rs.getObject(i).toString().trim();
+                    byte[] bytes = columnvalue.toString().getBytes();
+                    String data = new String(bytes);
+                    writer.writeCharacters("\n\t\t\t");
+                    writer.writeStartElement(rs_columns.getColumnName(i).toUpperCase());
+                    writer.writeCharacters(data);
+                    writer.writeEndElement();
+                }
+                writer.writeCharacters("\n\t\t");
                 writer.writeEndElement();
             }
-            writer.writeCharacters("\n\t\t");
-            writer.writeEndElement();
+
             writer.writeCharacters("\n\t");
             writer.writeEndElement();
             writer.writeCharacters("\n");
@@ -89,7 +103,7 @@ public class Extractor {
 
     public void countTableRows(){
         try{
-            System.out.println("Generating csv");
+            System.out.println("Generating table rowcount csv");
             generateCSV();
         }
         catch(Exception e){

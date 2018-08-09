@@ -11,7 +11,7 @@ public class XMLExtract {
             JobProperties jp = new JobProperties("D://File_Loader//src//job.properties");
             String schema = jp.getValue("db.schema.name", "DBO");
             Extractor newjob = new Extractor(schema);
-//        newjob.countTableRows();
+            newjob.countTableRows();
             newjob.runExtractor(jp);
         }
         catch(Exception e){
