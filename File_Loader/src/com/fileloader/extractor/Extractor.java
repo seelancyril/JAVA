@@ -28,6 +28,7 @@ public class Extractor {
     private static Connection con = null;
     private static Map<String, Integer> tables = new HashMap<String, Integer>();
     private static Statement stmt = null;
+    private static Statement stmtCount = null;
     private static ResultSet rs = null;
     private static ResultSetMetaData rs_columns = null;
     private String tableschema;
@@ -38,6 +39,7 @@ public class Extractor {
             DBConnection connection = new DBConnection();
             con = connection.getConnection();
             this.stmt=con.createStatement();
+            this.stmtCount=con.createStatement();
             this.rs=stmt.executeQuery("select table_name,table_rows from information_schema.tables where table_schema='"+tableschema+"'");
             while(rs.next()){
                 tables.put(rs.getString(1), rs.getInt(2));
@@ -52,51 +54,58 @@ public class Extractor {
         Map<Integer, String> columnNames = new LinkedHashMap<Integer, String>();
         for(String tablename : tables.keySet() ){
             String tablename_formatted = formatName(tablename);
+            ResultSet tablerowcount = stmtCount.executeQuery("select count(*) from" + tablename);
             rs = stmt.executeQuery("select * from "+ tablename);
-//            rs_columns = stmt.executeQuery("select column_name from information_schema.columns where table_name='"+tablename+"'");
+            int rowcount = 0;
+            while (tablerowcount.next()){
+                rowcount = tablerowcount.getInt(1);
+            }
             rs_columns = rs.getMetaData();
             int colcount = rs_columns.getColumnCount();
             System.out.println("Extraction started for table: "+tablename_formatted);
             String filepath = jp.getValue("app.outputfiles.location", "");
-            String filename = filepath + tableschema.toUpperCase() + "-" + tablename.toUpperCase() + "-0000" + ".xml";
-            Writer out = new OutputStreamWriter(new FileOutputStream(filename));
-            XMLOutputFactory factory = XMLOutputFactory.newInstance();
-            XMLStreamWriter writer = factory.createXMLStreamWriter(out);
+            for (int chunk=0;chunk<rowcount;chunk++){
+                String filename = filepath + tableschema.toUpperCase() + "-" + tablename.toUpperCase() + "-" + String.format("%04d", chunk) + ".xml";
+                Writer out = new OutputStreamWriter(new FileOutputStream(filename));
+                XMLOutputFactory factory = XMLOutputFactory.newInstance();
+                XMLStreamWriter writer = factory.createXMLStreamWriter(out);
 
-            writer.writeStartDocument("UTF-8","1.0");
-            writer.writeCharacters("\n");
-            writer.writeStartElement(tableschema.toUpperCase());
-            writer.writeCharacters("\n\t");
-            writer.writeStartElement(tablename.toUpperCase());
-
-            while(rs.next()){
-                writer.writeCharacters("\n\t\t");
-                writer.writeStartElement("ROW");
-                for(int i=1; i<=colcount;i++) {
+                writer.writeStartDocument("UTF-8","1.0");
+                writer.writeCharacters("\n");
+                writer.writeStartElement(tableschema.toUpperCase());
+                writer.writeCharacters("\n\t");
+                writer.writeStartElement(tablename.toUpperCase());
+                int counter = 1;
+                while(rs.next() && counter<100){
+                    writer.writeCharacters("\n\t\t");
+                    writer.writeStartElement("ROW");
+                    for(int i=1; i<=colcount;i++) {
 //                    columnNames.clear();
 //                    columnNames.put(i, Extractor.formatName(rs_columns.getColumnName(i)));
-                    Object columnvalue = rs.getObject(i) == null ? "" :rs.getObject(i).toString().trim();
-                    byte[] bytes = columnvalue.toString().getBytes();
-                    String data = new String(bytes);
-                    writer.writeCharacters("\n\t\t\t");
-                    writer.writeStartElement(rs_columns.getColumnName(i).toUpperCase());
-                    writer.writeCharacters(data);
+                        Object columnvalue = rs.getObject(i) == null ? "" :rs.getObject(i).toString().trim();
+                        byte[] bytes = columnvalue.toString().getBytes();
+                        String data = new String(bytes);
+                        writer.writeCharacters("\n\t\t\t");
+                        writer.writeStartElement(rs_columns.getColumnName(i).toUpperCase());
+                        writer.writeCharacters(data);
+                        writer.writeEndElement();
+                    }
+                    writer.writeCharacters("\n\t\t");
                     writer.writeEndElement();
+                    counter ++;
                 }
-                writer.writeCharacters("\n\t\t");
-                writer.writeEndElement();
-            }
 
-            writer.writeCharacters("\n\t");
-            writer.writeEndElement();
-            writer.writeCharacters("\n");
-            writer.writeEndElement();
-            writer.writeEndDocument();
-            writer.flush();
-            writer.close();
-            if(out != null){
-                out.flush();
-                out.close();
+                writer.writeCharacters("\n\t");
+                writer.writeEndElement();
+                writer.writeCharacters("\n");
+                writer.writeEndElement();
+                writer.writeEndDocument();
+                writer.flush();
+                writer.close();
+                if(out != null){
+                    out.flush();
+                    out.close();
+                }
             }
         }
     }
