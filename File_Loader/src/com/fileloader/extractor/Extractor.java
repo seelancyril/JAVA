@@ -86,7 +86,7 @@ public class Extractor {
                         byte[] bytes = columnvalue.toString().getBytes();
                         String data = new String(bytes);
                         writer.writeCharacters("\n\t\t\t");
-                        writer.writeStartElement(rs_columns.getColumnName(i).toUpperCase());
+                        writer.writeStartElement(rs_columns.getColumnName(i).toUpperCase().replace(" ","_"));
                         writer.writeCharacters(data);
                         writer.writeEndElement();
                     }

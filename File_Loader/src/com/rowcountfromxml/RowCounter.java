@@ -6,6 +6,7 @@ import javax.xml.stream.XMLStreamException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import javax.xml.stream.events.*;
 
 import static org.apache.commons.io.FileUtils.iterateFiles;
 
@@ -25,7 +26,10 @@ public class RowCounter {
         // Initializing the handler to access the tags in the XML file
         XMLEventReader eventReader = factory.createXMLEventReader(new FileReader(filename));
         while(eventReader.hasNext()){
+            XMLEvent event = eventReader.nextEvent();
 
+//            if(event.toString().equalsIgnoreCase("ROW"))
+                System.out.println(event.toString());
         }
     }
 
