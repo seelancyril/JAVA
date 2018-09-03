@@ -22,7 +22,7 @@ public class FileProperty {
         this.filetype = filename.toString().lastIndexOf('.') > 0 ? filename.toString().substring(filename.toString().lastIndexOf('.')+1) : "";
         this.filesize = (attrs.size() / 1024 + " KB");
         this.lastmodified = attrs.lastModifiedTime().toString();
-        this.filepath = "../blobs" + filename.getAbsolutePath().substring(14).replace("\\","/");
+        this.filepath = "../blobs" + filename.getAbsolutePath().substring(UnstructuredFileExtractor.givenpath.length()).replace("\\","/");
     }
 
     public String getFileType(){
@@ -43,5 +43,9 @@ public class FileProperty {
 
     public String getFolderCreation(){
         return lastmodified;
+    }
+
+    public String getFilename() {
+        return filename.toString().substring(UnstructuredFileExtractor.givenpath.length() + 1).replace("\\","/");
     }
 }

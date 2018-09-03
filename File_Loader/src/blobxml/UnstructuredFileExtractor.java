@@ -25,10 +25,12 @@ import org.apache.commons.io.FileUtils;
 public class UnstructuredFileExtractor {
 
     public static final String file_ext = ".xml";
+    public static String givenpath = null;
     private static List all_files;
     private static int chunk = 0;
+    private static int chunkvalue = 20;
     private static int record_counter = 0;
-    private static String outputpath = "D:\\ETL\\Syncplicity\\";
+    private static String outputpath = "D:/ETL/Syncplicity/";
     private static int record_count_metadata = 0;
 
     static void replaceSpace(File filename, String givenpath) throws IOException {
@@ -45,9 +47,9 @@ public class UnstructuredFileExtractor {
 
     public static void main(String args[]) throws Exception {
         if (args.length == 3) {
-            String givenpath = args[0];
+            givenpath = args[0];
             String xmloption = args[1];
-            outputpath = args[2] + "\\";
+            outputpath = args[2] + "/";
             File f = new File(givenpath);
 
             if (f.isDirectory()) {
@@ -56,7 +58,7 @@ public class UnstructuredFileExtractor {
                 // will get one level of the directory files
                 for (String file : files) {
                     System.out.println(file);
-                    File newfile = new File(givenpath + "\\" + file);
+                    File newfile = new File(givenpath + "/" + file);
 
                     if (newfile.isDirectory()) {
                         List<File> allFiles = getAllFiles(newfile);
@@ -86,6 +88,7 @@ public class UnstructuredFileExtractor {
     }
 
     static void createXML(List<File> files_in_folder, String Parent) throws Exception {
+
         String xmlfilename = outputpath + "DBO-SYNCPLICITY_ATTACHMENTS-" + String.format("%04d", chunk) + file_ext;
         System.out.println(xmlfilename);
         Writer out = new OutputStreamWriter(new FileOutputStream(xmlfilename));
@@ -109,6 +112,10 @@ public class UnstructuredFileExtractor {
                 writer.writeCharacters("\n\t\t\t");
                 writer.writeStartElement("ATTACHMENT");
                 writer.writeAttribute("ref", fp.getfilepath());
+                writer.writeEndElement();
+                writer.writeCharacters("\n\t\t\t");
+                writer.writeStartElement("FILE_PATH");
+                writer.writeCharacters(fp.getFilename());
                 writer.writeEndElement();
                 writer.writeCharacters("\n\t\t\t");
                 writer.writeStartElement("FILE_TYPE");
