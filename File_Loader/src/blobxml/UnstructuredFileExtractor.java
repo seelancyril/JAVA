@@ -1,16 +1,17 @@
 package blobxml;
 
 /*
-* This utility will xtract the files from the given path and create metadata XML for all the files.
-* input parameters for this program are <files path> <table> <Output path>
-* This is developed for the syncplicity application file extraction.
-* @Author Seelan
-* */
+ * This utility will xtract the files from the given path and create metadata XML for all the files.
+ * input parameters for this program are <files path> <table> <Output path>
+ * This is developed for the syncplicity application file extraction.
+ * @Author Seelan
+ * */
 
 import java.io.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.UUID;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -55,19 +56,26 @@ public class UnstructuredFileExtractor {
             if (f.isDirectory()) {
                 System.out.println("Gathering files from " + givenpath);
                 String files[] = f.list();
-                // will get one level of the directory files
-                for (String file : files) {
-                    System.out.println(file);
-                    File newfile = new File(givenpath + "/" + file);
+                //first level of directories (country/region)
+                for (String region : files) {
+                    File first_dir = new File(givenpath + "/" + region);
+                    // second level of directory (Users)
+                    if (first_dir.isDirectory()) {
+                        System.out.println(first_dir);
+                        String[] users = first_dir.list();
+                        for (String file : users) {
+                            System.out.println(file);
+                            File newfile = new File(givenpath + "/" + region + "/" + file);
 
-                    if (newfile.isDirectory()) {
-                        List<File> allFiles = getAllFiles(newfile);
-                        createXML(allFiles, newfile.getName());
+                            if (newfile.isDirectory()) {
+                                List<File> allFiles = getAllFiles(newfile);
+                                createXML(allFiles, newfile.getName(), region);
 
-                    } else {
+                            } else {
 
+                            }
+                        }
                     }
-
                 }
                 System.out.println("Total Records for Metadata: " + record_count_metadata);
                 if (xmloption.equalsIgnoreCase("table")) {
@@ -87,7 +95,7 @@ public class UnstructuredFileExtractor {
         }
     }
 
-    static void createXML(List<File> files_in_folder, String Parent) throws Exception {
+    static void createXML(List<File> files_in_folder, String Parent, String root) throws Exception {
 
         String xmlfilename = outputpath + "DBO-SYNCPLICITY_ATTACHMENTS-" + String.format("%04d", chunk) + file_ext;
         System.out.println(xmlfilename);
@@ -101,17 +109,23 @@ public class UnstructuredFileExtractor {
         writer.writeCharacters("\n\t");
         writer.writeStartElement("SYNCPLICITY_ATTACHMENTS");
         for (File f : files_in_folder) {
-            if(!f.isDirectory()){
+            if (!f.isDirectory()) {
                 FileProperty fp = new FileProperty(f);
                 writer.writeCharacters("\n\t\t");
                 writer.writeStartElement("ROW");
+                writer.writeAttribute("id", UUID.randomUUID().toString());
                 writer.writeCharacters("\n\t\t\t");
                 writer.writeStartElement("USERNAME");
                 writer.writeCharacters(Parent);
                 writer.writeEndElement();
                 writer.writeCharacters("\n\t\t\t");
+                writer.writeStartElement("REGION");
+                writer.writeCharacters(root);
+                writer.writeEndElement();
+                writer.writeCharacters("\n\t\t\t");
                 writer.writeStartElement("ATTACHMENT");
                 writer.writeAttribute("ref", fp.getfilepath());
+                writer.writeCharacters(fp.getFile());
                 writer.writeEndElement();
                 writer.writeCharacters("\n\t\t\t");
                 writer.writeStartElement("FILE_PATH");
@@ -129,9 +143,13 @@ public class UnstructuredFileExtractor {
                 writer.writeStartElement("FILE_SIZE");
                 writer.writeCharacters(fp.getfilesize());
                 writer.writeEndElement();
+                writer.writeCharacters("\n\t\t\t");
+                writer.writeStartElement("RECORD_ADDED_DATE");
+                writer.writeCharacters(fp.getCurrentDate());
+                writer.writeEndElement();
                 writer.writeCharacters("\n\t\t");
                 writer.writeEndElement();
-                fp =null;
+                fp = null;
                 record_count_metadata++;
             }
         }
@@ -140,11 +158,11 @@ public class UnstructuredFileExtractor {
         writer.writeCharacters("\n");
         writer.writeEndElement();
 
-        if(out != null){
+        if (out != null) {
             out.flush();
             out.close();
         }
-        chunk ++;
+        chunk++;
     }
 
     public static List<File> getAllFiles(File directory) {

@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.time.LocalDateTime;
 
 public class FileProperty {
 
@@ -14,38 +15,53 @@ public class FileProperty {
     private String filetype;
     private String filesize;
     private String lastmodified;
+    private String creationDate;
 
     FileProperty(File filname) throws IOException {
         this.filename = filname;
         Path filepath = Paths.get(filename.getAbsolutePath());
         BasicFileAttributes attrs = Files.readAttributes(filepath, BasicFileAttributes.class);
-        this.filetype = filename.toString().lastIndexOf('.') > 0 ? filename.toString().substring(filename.toString().lastIndexOf('.')+1) : "";
+        this.filetype = filename.toString().lastIndexOf('.') > 0 ? filename.toString().substring(filename.toString().lastIndexOf('.') + 1) : "";
         this.filesize = (attrs.size() / 1024 + " KB");
         this.lastmodified = attrs.lastModifiedTime().toString();
-        this.filepath = "../blobs" + filename.getAbsolutePath().substring(UnstructuredFileExtractor.givenpath.length()).replace("\\","/");
+        this.creationDate = attrs.creationTime().toString();
+        this.filepath = "../blobs" + filename.getAbsolutePath().substring(UnstructuredFileExtractor.givenpath.length()).replace("\\", "/");
+//        this.filepath = filename.getPath().toString().replace("\\", "/");
     }
 
-    public String getFileType(){
+    public String getFile() {
+        return filename.getName();
+    }
+
+    public String getFileType() {
         return filetype;
     }
 
-    public String getfilepath(){
+    public String getfilepath() {
         return filepath;
     }
 
-    public String getfilesize(){
+    public String getfilesize() {
         return filesize;
     }
 
-    public String getlastmodified(){
+    public String getlastmodified() {
         return lastmodified;
     }
 
-    public String getFolderCreation(){
+    public String getFolderCreation() {
         return lastmodified;
     }
 
     public String getFilename() {
-        return filename.toString().substring(UnstructuredFileExtractor.givenpath.length() + 1).replace("\\","/");
+        return filename.toString().substring(UnstructuredFileExtractor.givenpath.length() + 1).replace("\\", "/");
+    }
+
+    public String getFileCreation() {
+        return creationDate;
+    }
+
+    public String getCurrentDate() {
+        return LocalDateTime.now().toString();
     }
 }
