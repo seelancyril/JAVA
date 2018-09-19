@@ -21,6 +21,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamWriter;
 
+import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 import org.apache.commons.io.FileUtils;
 
 public class UnstructuredFileExtractor {
@@ -59,20 +60,22 @@ public class UnstructuredFileExtractor {
                 //first level of directories (country/region)
                 for (String region : files) {
                     File first_dir = new File(givenpath + "/" + region);
+
                     // second level of directory (Users)
                     if (first_dir.isDirectory()) {
-                        System.out.println(first_dir);
+
+//                        System.out.println("File renamed: " + first_dir.getName());
                         String[] users = first_dir.list();
                         for (String file : users) {
-                            System.out.println(file);
+                            System.out.println("user: " + file);
                             File newfile = new File(givenpath + "/" + region + "/" + file);
+//                            File dest = new File(getFileFormatted(newfile.getName()));
+//                            newfile.renameTo(new File(newfile.getParent(), dest.getName()));
 
                             if (newfile.isDirectory()) {
+                                removeNonAlphaNumericChars(newfile);
                                 List<File> allFiles = getAllFiles(newfile);
                                 createXML(allFiles, newfile.getName(), region);
-
-                            } else {
-
                             }
                         }
                     }
@@ -177,4 +180,36 @@ public class UnstructuredFileExtractor {
         }
         return resultList;
     }
+
+
+    public static void removeNonAlphaNumericChars(File directory){
+        File[] fList = directory.listFiles();
+        for (File file : fList) {
+            if (file.isDirectory()) {
+                File dest = new File(file.getParent(), getFolderFormatted(file.getName()));
+                file.renameTo(new File(file.getParent(), getFolderFormatted(file.getName())));
+                removeNonAlphaNumericChars(new File(dest.getAbsolutePath()));
+            }
+            else{
+                File dest = new File(getFileFormatted(file.getName()));
+                file.renameTo(new File(file.getParent(), dest.getName()));
+            }
+        }
+    }
+
+    public static String getFolderFormatted(String string) {
+        string = string.replaceAll("[^\\p{Alnum}.\\s_]", "").trim().replace("$", "").replace("(", "").replace(")", "")
+                .replace("[", "").replace("]", "").replace("{", "").replace("}", "").replace("/", "").replace("\\", "")
+                .replace("\"", "").replace("'", "").replace("`", "").replace("&", "").replace("@", "").replace("#", "")
+                .replace("%", "").replace("!", "").replace("^", "").replace("*", "").replace("|", "");
+        return (string.charAt(0) >= '0' && string.charAt(0) <= '9') ? "_" + string : string;
+    }
+
+    public static String getFileFormatted(String string) {
+        return string.replaceAll("[^\\p{Alnum}.\\s_]", "").trim().replace("$", "").replace("(", "").replace(")", "")
+                .replace("[", "").replace("]", "").replace("{", "").replace("}", "").replace("/", "").replace("\\", "")
+                .replace("\"", "").replace("'", "").replace("`", "").replace("&", "").replace("@", "").replace("#", "")
+                .replace("%", "").replace("!", "").replace("^", "").replace("*", "").replace("|", "");
+    }
+    
 }
