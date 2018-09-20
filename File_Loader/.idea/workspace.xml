@@ -20,8 +20,8 @@
       <file leaf-file-name="UnstructuredFileExtractor.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/blobxml/UnstructuredFileExtractor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="213" column="4" selection-start-line="213" selection-start-column="4" selection-end-line="213" selection-end-column="4" />
+            <state relative-caret-position="-2792">
+              <caret line="91" column="79" lean-forward="true" selection-start-line="91" selection-start-column="79" selection-end-line="91" selection-end-column="79" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#7053#7059#0" expanded="true" />
@@ -30,11 +30,41 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="AllFiles.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/blobxml/AllFiles.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="12" column="40" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SipXml.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/blobxml/SipXml.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="1" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TableXml.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/blobxml/TableXml.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" selection-start-line="12" selection-end-line="12" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="FileProperty.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/blobxml/FileProperty.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="506">
-              <caret line="60" column="28" selection-start-line="60" selection-start-column="28" selection-end-line="60" selection-end-column="28" />
+            <state relative-caret-position="387">
+              <caret line="41" column="5" lean-forward="true" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1272#1273#0" expanded="true" />
@@ -53,6 +83,30 @@
                 <element signature="e#1891#1892#0" expanded="true" />
                 <element signature="e#1929#1930#0" expanded="true" />
                 <element signature="e#1982#1983#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RenameFiles.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/blobxml/RenameFiles.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileCopy.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/blobxml/FileCopy.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="1" selection-start-column="1" selection-end-column="1" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -88,6 +142,7 @@
         <option value="$PROJECT_DIR$/src/blobxml/FileList.java" />
         <option value="$PROJECT_DIR$/src/blobxml/RenameFiles.java" />
         <option value="$PROJECT_DIR$/src/blobxml/FileProperty.java" />
+        <option value="$PROJECT_DIR$/src/blobxml/FileCopy.java" />
         <option value="$PROJECT_DIR$/src/blobxml/UnstructuredFileExtractor.java" />
       </list>
     </option>
@@ -175,6 +230,17 @@
         </pattern>
       </extension>
     </configuration>
+    <configuration name="FileCopy" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="blobxml.FileCopy" />
+      <module name="File_Loader" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="blobxml.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
     <configuration name="RenameFiles" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="blobxml.RenameFiles" />
       <module name="File_Loader" />
@@ -210,21 +276,10 @@
         </pattern>
       </extension>
     </configuration>
-    <configuration name="TestQuery" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.fileloader.extractor.test.TestQuery" />
-      <module name="File_Loader" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.fileloader.extractor.test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-    </configuration>
     <configuration name="UnstructuredFileExtractor" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="blobxml.UnstructuredFileExtractor" />
       <module name="File_Loader" />
-      <option name="PROGRAM_PARAMETERS" value="D:\ETL\BLOBxml table D:\ETL\table" />
+      <option name="PROGRAM_PARAMETERS" value="D:\ETL\BLOBxml D:\ETL\table" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
@@ -288,19 +343,19 @@
     <list>
       <item itemvalue="Application.UnstructuredFileExtractor" />
       <item itemvalue="Application.XMLExtract" />
-      <item itemvalue="Application.TestQuery" />
       <item itemvalue="Application.TestBlobs" />
       <item itemvalue="Application.RowCountMain" />
       <item itemvalue="Application.AllFiles" />
       <item itemvalue="Application.RenameFiles" />
+      <item itemvalue="Application.FileCopy" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.FileCopy" />
         <item itemvalue="Application.RenameFiles" />
         <item itemvalue="Application.AllFiles" />
         <item itemvalue="Application.RowCountMain" />
         <item itemvalue="Application.TestBlobs" />
-        <item itemvalue="Application.TestQuery" />
       </list>
     </recent_temporary>
   </component>
@@ -323,14 +378,14 @@
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.49633968" weight="0.3290938" />
+      <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.4956076" weight="0.3290938" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.511713" side_tool="true" visible="true" weight="0.31319556" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.51317716" side_tool="true" visible="true" weight="0.31319556" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.48828697" visible="true" weight="0.31319556" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.48682284" visible="true" weight="0.31319556" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.3290938" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
@@ -340,7 +395,7 @@
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49633968" weight="0.3990461" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4956076" weight="0.3990461" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -354,17 +409,10 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="26" />
+      <option name="time" value="30" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/fileloader/extractor/utils/JobProperties.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="27" column="40" selection-start-line="27" selection-start-column="40" selection-end-line="27" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/blobxml/UnstructuredFileExtractor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
@@ -613,13 +661,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/blobxml/SipXml.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="1" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/blobxml/TestBlobs.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -634,13 +675,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/blobxml/AllFiles.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-75">
-          <caret line="12" column="40" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/META-INF/MANIFEST.MF">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -648,16 +682,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="324" column="11" selection-start-line="324" selection-start-column="11" selection-end-line="324" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/blobxml/TableXml.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -682,16 +706,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/blobxml/RenameFiles.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/util/List.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -701,8 +715,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/blobxml/FileProperty.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="60" column="28" selection-start-line="60" selection-start-column="28" selection-end-line="60" selection-end-column="28" />
+        <state relative-caret-position="387">
+          <caret line="41" column="5" lean-forward="true" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1272#1273#0" expanded="true" />
@@ -725,10 +739,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/blobxml/RenameFiles.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/blobxml/SipXml.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="1" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/blobxml/TableXml.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/blobxml/AllFiles.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="12" column="40" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/blobxml/FileCopy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="1" selection-start-column="1" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/blobxml/UnstructuredFileExtractor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="213" column="4" selection-start-line="213" selection-start-column="4" selection-end-line="213" selection-end-column="4" />
+        <state relative-caret-position="-2792">
+          <caret line="91" column="79" lean-forward="true" selection-start-line="91" selection-start-column="79" selection-end-line="91" selection-end-column="79" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#7053#7059#0" expanded="true" />

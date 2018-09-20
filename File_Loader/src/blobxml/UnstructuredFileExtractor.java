@@ -28,6 +28,8 @@ public class UnstructuredFileExtractor {
 
     public static final String file_ext = ".xml";
     public static String givenpath = null;
+    public static String blobpath = null;
+    public static String tablepath = null;
     private static List all_files;
     private static int chunk = 0;
     private static int chunkvalue = 20;
@@ -48,18 +50,29 @@ public class UnstructuredFileExtractor {
     }
 
     public static void main(String args[]) throws Exception {
-        if (args.length == 3) {
+        if (args.length <= 2) {
             givenpath = args[0];
-            String xmloption = args[1];
-            outputpath = args[2] + "/";
-            File f = new File(givenpath);
+            outputpath = args[1] + "/";
+            File source = new File(givenpath);
+            blobpath = outputpath + "blobs/";
+            tablepath = outputpath + "tables/";
+            File blobs = new File(blobpath);
+            File tables = new File(tablepath);
+            System.out.println("Copying file from " + args[0] + " to " + args[1]);
+            if(!blobs.exists()){
+                blobs.mkdirs();
+            }
+            if(!tables.exists()){
+                tables.mkdirs();
+            }
+            recursiveCopy(source, blobs);
 
-            if (f.isDirectory()) {
-                System.out.println("Gathering files from " + givenpath);
-                String files[] = f.list();
+            if (blobs.isDirectory()) {
+                System.out.println("Gathering files from " + args[1]);
+                String files[] = blobs.list();
                 //first level of directories (country/region)
                 for (String region : files) {
-                    File first_dir = new File(givenpath + "/" + region);
+                    File first_dir = new File(blobpath + "/" + region);
 
                     // second level of directory (Users)
                     if (first_dir.isDirectory()) {
@@ -68,7 +81,8 @@ public class UnstructuredFileExtractor {
                         String[] users = first_dir.list();
                         for (String file : users) {
                             System.out.println("user: " + file);
-                            File newfile = new File(givenpath + "/" + region + "/" + file);
+                            File newfile = new File(blobpath + "/" + region + "/" + file);
+//                            <if needed we can add this>
 //                            File dest = new File(getFileFormatted(newfile.getName()));
 //                            newfile.renameTo(new File(newfile.getParent(), dest.getName()));
 
@@ -81,11 +95,6 @@ public class UnstructuredFileExtractor {
                     }
                 }
                 System.out.println("Total Records for Metadata: " + record_count_metadata);
-                if (xmloption.equalsIgnoreCase("table")) {
-                    return;
-                } else if (xmloption.equalsIgnoreCase("sip")) {
-                    return;
-                }
             } else {
                 System.out.println("Provide valid directory");
                 System.exit(0);
@@ -100,7 +109,7 @@ public class UnstructuredFileExtractor {
 
     static void createXML(List<File> files_in_folder, String Parent, String root) throws Exception {
 
-        String xmlfilename = outputpath + "DBO-SYNCPLICITY_ATTACHMENTS-" + String.format("%04d", chunk) + file_ext;
+        String xmlfilename = tablepath + "DBO-SYNCPLICITY_ATTACHMENTS-" + String.format("%04d", chunk) + file_ext;
         System.out.println(xmlfilename);
         Writer out = new OutputStreamWriter(new FileOutputStream(xmlfilename));
         XMLOutputFactory factory = XMLOutputFactory.newInstance();
@@ -181,16 +190,14 @@ public class UnstructuredFileExtractor {
         return resultList;
     }
 
-
-    public static void removeNonAlphaNumericChars(File directory){
+    public static void removeNonAlphaNumericChars(File directory) {
         File[] fList = directory.listFiles();
         for (File file : fList) {
             if (file.isDirectory()) {
                 File dest = new File(file.getParent(), getFolderFormatted(file.getName()));
                 file.renameTo(new File(file.getParent(), getFolderFormatted(file.getName())));
                 removeNonAlphaNumericChars(new File(dest.getAbsolutePath()));
-            }
-            else{
+            } else {
                 File dest = new File(getFileFormatted(file.getName()));
                 file.renameTo(new File(file.getParent(), dest.getName()));
             }
@@ -211,5 +218,54 @@ public class UnstructuredFileExtractor {
                 .replace("\"", "").replace("'", "").replace("`", "").replace("&", "").replace("@", "").replace("#", "")
                 .replace("%", "").replace("!", "").replace("^", "").replace("*", "").replace("|", "");
     }
-    
+
+    public static void recursiveCopy(File fSource, File fDest) {
+        try {
+            if (fSource.isDirectory()) {
+                // A simple validation, if the destination is not exist then create it
+                if (!fDest.exists()) {
+                    fDest.mkdirs();
+                }
+
+                // Create list of files and directories on the current source
+                // Note: with the recursion 'fSource' changed accordingly
+                String[] fList = fSource.list();
+
+                for (int index = 0; index < fList.length; index++) {
+                    File dest = new File(fDest, fList[index]);
+                    File source = new File(fSource, fList[index]);
+
+                    // Recursion call take place here
+                    recursiveCopy(source, dest);
+                }
+            } else {
+                // Found a file. Copy it into the destination, which is already created in 'if' condition above
+
+                // Open a file for read and write (copy)
+                FileInputStream fInStream = new FileInputStream(fSource);
+                FileOutputStream fOutStream = new FileOutputStream(fDest);
+
+                // Read 2K at a time from the file
+                byte[] buffer = new byte[2048];
+                int iBytesReads;
+
+                // In each successful read, write back to the source
+                while ((iBytesReads = fInStream.read(buffer)) >= 0) {
+                    fOutStream.write(buffer, 0, iBytesReads);
+                }
+
+                // Safe exit
+                if (fInStream != null) {
+                    fInStream.close();
+                }
+
+                if (fOutStream != null) {
+                    fOutStream.close();
+                }
+            }
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+
 }
