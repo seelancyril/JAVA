@@ -25,7 +25,7 @@ public class FileProperty {
         this.filesize = (attrs.size() / 1024 + " KB");
         this.lastmodified = attrs.lastModifiedTime().toString();
         this.creationDate = attrs.creationTime().toString();
-        this.filepath = "../blobs" + filename.getAbsolutePath().substring(UnstructuredFileExtractor.givenpath.length()).replace("\\", "/");
+        this.filepath = "../" + filename.getAbsolutePath().substring(UnstructuredFileExtractor.outputpath.length()).replace("\\", "/");
 //        this.filepath = filename.getPath().toString().replace("\\", "/");
     }
 
@@ -54,7 +54,7 @@ public class FileProperty {
     }
 
     public String getFilename() {
-        return filename.toString().substring(UnstructuredFileExtractor.givenpath.length() + 1).replace("\\", "/");
+        return filename.toString().substring(UnstructuredFileExtractor.outputpath.length() + 6).replace("\\", "/");
     }
 
     public String getFileCreation() {

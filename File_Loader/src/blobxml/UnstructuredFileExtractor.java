@@ -34,7 +34,7 @@ public class UnstructuredFileExtractor {
     private static int chunk = 0;
     private static int chunkvalue = 20;
     private static int record_counter = 0;
-    private static String outputpath = "D:/ETL/Syncplicity/";
+    public static String outputpath = "D:/ETL/Syncplicity/";
     private static int record_count_metadata = 0;
 
     static void replaceSpace(File filename, String givenpath) throws IOException {
@@ -80,7 +80,7 @@ public class UnstructuredFileExtractor {
 //                        System.out.println("File renamed: " + first_dir.getName());
                         String[] users = first_dir.list();
                         for (String file : users) {
-                            System.out.println("user: " + file);
+                            System.out.println("Parent: " + file);
                             File newfile = new File(blobpath + "/" + region + "/" + file);
 //                            <if needed we can add this>
 //                            File dest = new File(getFileFormatted(newfile.getName()));
@@ -100,16 +100,16 @@ public class UnstructuredFileExtractor {
                 System.exit(0);
             }
         } else {
-            System.out.println("==========================Usage=========================");
-            System.out.println("     <FilePath> <Table or SIP> <Output XML directory>    ");
-            System.out.println("========================================================");
+            System.out.println("================================Usage===========================");
+            System.out.println("     <Source file path> <destination path(Application Path)>    ");
+            System.out.println("================================================================");
             System.exit(1);
         }
     }
 
     static void createXML(List<File> files_in_folder, String Parent, String root) throws Exception {
 
-        String xmlfilename = tablepath + "DBO-SYNCPLICITY_ATTACHMENTS-" + String.format("%04d", chunk) + file_ext;
+        String xmlfilename = tablepath + "DBO-FILE_ATTACHMENTS-" + String.format("%04d", chunk) + file_ext;
         System.out.println(xmlfilename);
         Writer out = new OutputStreamWriter(new FileOutputStream(xmlfilename));
         XMLOutputFactory factory = XMLOutputFactory.newInstance();
@@ -119,7 +119,7 @@ public class UnstructuredFileExtractor {
         writer.writeCharacters("\n");
         writer.writeStartElement("DBO");
         writer.writeCharacters("\n\t");
-        writer.writeStartElement("SYNCPLICITY_ATTACHMENTS");
+        writer.writeStartElement("FILE_ATTACHMENTS");
         for (File f : files_in_folder) {
             if (!f.isDirectory()) {
                 FileProperty fp = new FileProperty(f);
