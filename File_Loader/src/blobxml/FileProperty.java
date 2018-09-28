@@ -16,6 +16,7 @@ public class FileProperty {
     private String filesize;
     private String lastmodified;
     private String creationDate;
+    private String lastaccessed;
 
     FileProperty(File filname) throws IOException {
         this.filename = filname;
@@ -25,12 +26,16 @@ public class FileProperty {
         this.filesize = (attrs.size() / 1024 + " KB");
         this.lastmodified = attrs.lastModifiedTime().toString();
         this.creationDate = attrs.creationTime().toString();
-        this.filepath = "../" + filename.getAbsolutePath().substring(UnstructuredFileExtractor.outputpath.length()).replace("\\", "/");
-//        this.filepath = filename.getPath().toString().replace("\\", "/");
+        this.lastaccessed = attrs.lastAccessTime().toString();
+//        this.filepath = "../" + filename.getAbsolutePath().substring(UnstructuredFileExtractor.outputpath.length()).replace("\\", "/");
+        this.filepath = filename.getAbsolutePath().contains("\\") ? "../blobs" + filename.getAbsolutePath().substring(TestUnstructured.givenpath.length(), filename.getAbsolutePath().lastIndexOf('\\') + 1)
+                .replace("\\", "/") + TestUnstructured.getFileFormatted(filename.getName()) : "../blobs" + filename.getAbsolutePath().substring(TestUnstructured.givenpath.length())
+                .replace("\\", "/") + TestUnstructured.getFileFormatted(filename.getName());
     }
 
     public String getFile() {
         return filename.getName();
+//        return TestUnstructured.getFileFormatted(filename.getName());
     }
 
     public String getFileType() {
@@ -54,7 +59,8 @@ public class FileProperty {
     }
 
     public String getFilename() {
-        return filename.toString().substring(UnstructuredFileExtractor.outputpath.length() + 6).replace("\\", "/");
+//        return filename.toString().substring(UnstructuredFileExtractor.outputpath.length() + 6).replace("\\", "/");
+        return filename.toString().substring(TestUnstructured.givenpath.length() + 1).replace("\\", "/");
     }
 
     public String getFileCreation() {
@@ -63,5 +69,13 @@ public class FileProperty {
 
     public String getCurrentDate() {
         return LocalDateTime.now().toString();
+    }
+
+    public String getSourcePath(){
+        return filename.getAbsolutePath();
+    }
+
+    public String getLastAccessDate(){
+        return lastaccessed;
     }
 }

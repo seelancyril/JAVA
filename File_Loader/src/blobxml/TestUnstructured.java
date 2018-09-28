@@ -21,10 +21,10 @@ import javax.xml.stream.XMLStreamWriter;
 import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 import org.apache.commons.io.FileUtils;
 
-public class UnstructuredFileExtractor {
+public class TestUnstructured {
 
     public static final String file_ext = ".xml";
-    public static String givenpath = null;
+    public static String givenpath;
     public static String blobpath = null;
     public static String tablepath = null;
     private static List all_files;
@@ -34,6 +34,10 @@ public class UnstructuredFileExtractor {
     public static String outputpath = "D:/ETL/Syncplicity/";
     private static int record_count_metadata = 0;
 
+//    TestUnstructured(String givenpath, String outputpath){
+//        this.givenpath = givenpath;
+//        this.outputpath = outputpath;
+//    }
     static void replaceSpace(File filename, String givenpath) throws IOException {
         String fullpath = filename.getAbsolutePath();
         File filename1 = null;
@@ -48,6 +52,7 @@ public class UnstructuredFileExtractor {
 
     public static void main(String args[]) throws Exception {
         if (args.length <= 2) {
+//            TestUnstructured t = new TestUnstructured(args[0], args[1]);
             givenpath = args[0];
             outputpath = args[1] + "/";
             File source = new File(givenpath);
@@ -56,39 +61,39 @@ public class UnstructuredFileExtractor {
             File blobs = new File(blobpath);
             File tables = new File(tablepath);
             System.out.println("Copying file from " + args[0] + " to " + args[1]);
-            if(!blobs.exists()){
+            if (!blobs.exists()) {
                 blobs.mkdirs();
             }
-            if(!tables.exists()){
+            if (!tables.exists()) {
                 tables.mkdirs();
             }
             recursiveCopy(source, blobs);
 
-            if (blobs.isDirectory()) {
-                System.out.println("Gathering files from " + args[1]);
-                String files[] = blobs.list();
-                //first level of directories (country/region)
+            //creating xmls TODO: need to check whether the xmls are getting generated if the junk values are present in the column value
+            if (source.isDirectory()) {
+                System.out.println("Gathering file information from source: " + args[0]);
+                String files[] = source.list();
+
+                //Check for the first level of directories (country/region)
                 for (String region : files) {
-                    File first_dir = new File(blobpath + "/" + region);
+                    File first_dir = new File(givenpath + "/" + region);
 
                     // second level of directory (Users)
                     if (first_dir.isDirectory()) {
-
 //                        System.out.println("File renamed: " + first_dir.getName());
                         String[] users = first_dir.list();
                         List<File> others = new ArrayList<File>();
                         for (String file : users) {
                             System.out.println("Parent: " + file);
-                            File newfile = new File(blobpath + "/" + region + "/" + file);
+                            File newfile = new File(givenpath + "/" + region + "/" + file);
 //                            <if needed we can add this>
 //                            File dest = new File(getFileFormatted(newfile.getName()));
 //                            newfile.renameTo(new File(newfile.getParent(), dest.getName()));
                             if (newfile.isDirectory()) {
-                                removeNonAlphaNumericChars(newfile);
+//                                removeNonAlphaNumericChars(newfile);
                                 List<File> allFiles = getAllFiles(newfile);
                                 createXML(allFiles, newfile.getName(), region);
-                            }
-                            else {
+                            } else {
                                 others.add(newfile);
                             }
                         }
@@ -97,8 +102,38 @@ public class UnstructuredFileExtractor {
                         }
                     }
                 }
+                System.out.println("------------Extraction completed---------------");
                 System.out.println("Total Records for Metadata: " + record_count_metadata);
-            } else {
+            }
+
+            //reformatting files in the destination TODO: check all the files recursively
+            if (blobs.isDirectory()) {
+                System.out.println("File name reformatting... " + args[0]);
+                String files[] = blobs.list();
+
+                //Check for the first level of directories (country/region)
+                for (String region : files) {
+                    File first_dir = new File(blobpath + "/" + region);
+
+                    // second level of directory (Users)
+                    if (first_dir.isDirectory()) {
+//                        System.out.println("File renamed: " + first_dir.getName());
+                        String[] users = first_dir.list();
+                        List<File> others = new ArrayList<File>();
+                        for (String file : users) {
+                            File newfile = new File(blobpath + "/" + region + "/" + file);
+//                            <if needed we can add this>
+//                            File dest = new File(getFileFormatted(newfile.getName()));
+//                            newfile.renameTo(new File(newfile.getParent(), dest.getName()));
+                            if (newfile.isDirectory()) {
+                                removeNonAlphaNumericChars(newfile);
+                            }
+                        }
+                    }
+                }
+                System.out.println("-------------Process completed-----------------");
+            }
+            else {
                 System.out.println("Provide valid directory");
                 System.exit(0);
             }
@@ -159,12 +194,20 @@ public class UnstructuredFileExtractor {
                 writer.writeCharacters(fp.getFileCreation());
                 writer.writeEndElement();
                 writer.writeCharacters("\n\t\t\t");
+                writer.writeStartElement("FILE_LAST_ACCESS_DATE");
+                writer.writeCharacters(fp.getLastAccessDate());
+                writer.writeEndElement();
+                writer.writeCharacters("\n\t\t\t");
                 writer.writeStartElement("FILE_SIZE");
                 writer.writeCharacters(fp.getfilesize());
                 writer.writeEndElement();
                 writer.writeCharacters("\n\t\t\t");
                 writer.writeStartElement("RECORD_ADDED_DATE");
                 writer.writeCharacters(fp.getCurrentDate());
+                writer.writeEndElement();
+                writer.writeCharacters("\n\t\t\t");
+                writer.writeStartElement("SRC_PATH");
+                writer.writeCharacters(fp.getSourcePath());
                 writer.writeEndElement();
                 writer.writeCharacters("\n\t\t");
                 writer.writeEndElement();
@@ -202,11 +245,18 @@ public class UnstructuredFileExtractor {
         for (File file : fList) {
             if (file.isDirectory()) {
                 File dest = new File(file.getParent(), getFolderFormatted(file.getName()));
-                file.renameTo(new File(file.getParent(), getFolderFormatted(file.getName())));
+                if(!dest.exists()){
+                    file.renameTo(new File(file.getParent(), getFolderFormatted(file.getName())));
+                }
                 removeNonAlphaNumericChars(new File(dest.getAbsolutePath()));
             } else {
                 File dest = new File(getFileFormatted(file.getName()));
-                file.renameTo(new File(file.getParent(), dest.getName()));
+                if(!dest.exists()){
+                    file.renameTo(new File(file.getParent(), getFolderFormatted(file.getName())));
+                }
+                else{
+                    System.out.println("duplicate found");
+                }
             }
         }
     }

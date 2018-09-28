@@ -1,0 +1,15 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="UnstructuredXmlExtraction:jar">
+    <output-path>D:/ETL/ExportedJars</output-path>
+    <root id="archive" name="File_Loader.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="D:/ETL/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="File_Loader" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/mysql-connector-java-8.0.11.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/ojdbc6.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/commons-io-2.5.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/xml-apis-1.4.01.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
