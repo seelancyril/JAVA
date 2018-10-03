@@ -28,8 +28,11 @@ public class FileProperty {
         this.creationDate = attrs.creationTime().toString();
         this.lastaccessed = attrs.lastAccessTime().toString();
 //        this.filepath = "../" + filename.getAbsolutePath().substring(UnstructuredFileExtractor.outputpath.length()).replace("\\", "/");
-        this.filepath = filename.getAbsolutePath().contains("\\") ? "../blobs" + filename.getAbsolutePath().substring(TestUnstructured.givenpath.length(), filename.getAbsolutePath().lastIndexOf('\\') + 1)
-                .replace("\\", "/") + TestUnstructured.getFileFormatted(filename.getName()) : "../blobs" + filename.getAbsolutePath().substring(TestUnstructured.givenpath.length())
+//        this.filepath = filename.getAbsolutePath().contains("\\") ? "../blobs" + filename.getAbsolutePath().substring(TestUnstructured.givenpath.length(), filename.getAbsolutePath().lastIndexOf('\\') + 1)
+//                .replace("\\", "/") + TestUnstructured.getFileFormatted(filename.getName()) : "../blobs" + filename.getAbsolutePath().substring(TestUnstructured.givenpath.length())
+//                .replace("\\", "/") + TestUnstructured.getFileFormatted(filename.getName());
+        this.filepath = filename.getAbsolutePath().contains("\\") || filename.getAbsolutePath().contains("/") ? "../blobs" + TestUnstructured.getFolderFormatted(filename.getAbsolutePath().replace("\\", "/").substring(TestUnstructured.givenpath.length(), filename.getAbsolutePath().replace("\\","/").lastIndexOf('/') + 1))
+                 + TestUnstructured.getFileFormatted(filename.getName()) : "../blobs" + filename.getAbsolutePath().substring(TestUnstructured.givenpath.length())
                 .replace("\\", "/") + TestUnstructured.getFileFormatted(filename.getName());
     }
 
@@ -54,9 +57,9 @@ public class FileProperty {
         return lastmodified;
     }
 
-    public String getFolderCreation() {
-        return lastmodified;
-    }
+//    public String getFolderCreation() {
+//        return lastmodified;
+//    }
 
     public String getFilename() {
 //        return filename.toString().substring(UnstructuredFileExtractor.outputpath.length() + 6).replace("\\", "/");

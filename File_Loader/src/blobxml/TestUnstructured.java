@@ -67,7 +67,8 @@ public class TestUnstructured {
             if (!tables.exists()) {
                 tables.mkdirs();
             }
-            recursiveCopy(source, blobs);
+//            recursiveCopy(source, blobs);
+            FileUtils.copyDirectory(source, blobs);
 
             //creating xmls TODO: need to check whether the xmls are getting generated if the junk values are present in the column value
             if (source.isDirectory()) {
@@ -114,7 +115,9 @@ public class TestUnstructured {
                 //Check for the first level of directories (country/region)
                 for (String region : files) {
                     File first_dir = new File(blobpath + "/" + region);
-
+                    if (first_dir.isDirectory()) {
+                        removeNonAlphaNumericChars(first_dir);
+                    }
                     // second level of directory (Users)
                     if (first_dir.isDirectory()) {
 //                        System.out.println("File renamed: " + first_dir.getName());
@@ -122,9 +125,9 @@ public class TestUnstructured {
                         List<File> others = new ArrayList<File>();
                         for (String file : users) {
                             File newfile = new File(blobpath + "/" + region + "/" + file);
-//                            <if needed we can add this>
-//                            File dest = new File(getFileFormatted(newfile.getName()));
-//                            newfile.renameTo(new File(newfile.getParent(), dest.getName()));
+//                            removing non english from User directories
+                            File dest = new File(getFileFormatted(newfile.getName()));
+                            newfile.renameTo(new File(newfile.getParent(), dest.getName()));
                             if (newfile.isDirectory()) {
                                 removeNonAlphaNumericChars(newfile);
                             }
@@ -262,17 +265,17 @@ public class TestUnstructured {
     }
 
     public static String getFolderFormatted(String string) {
-        string = string.replaceAll("[^\\p{Alnum}.\\s_]", "").trim().replace("$", "").replace("(", "").replace(")", "")
-                .replace("[", "").replace("]", "").replace("{", "").replace("}", "").replace("/", "").replace("\\", "")
+        string = string.replaceAll("[^\\p{Alnum}.\\s_\\/]", "").trim().replace("$", "").replace("(", "").replace(")", "")
+                .replace("[", "").replace("]", "").replace("{", "").replace("}", "")
                 .replace("\"", "").replace("'", "").replace("`", "").replace("&", "").replace("@", "").replace("#", "")
                 .replace("%", "").replace("!", "").replace("^", "").replace("*", "").replace("|", "");
-        return (string.charAt(0) >= '0' && string.charAt(0) <= '9') ? "_" + string : string;
+        return string;
     }
 
     public static String getFileFormatted(String string) {
         return string.replaceAll("[^\\p{Alnum}.\\s_]", "").trim().replace("$", "").replace("(", "").replace(")", "")
-                .replace("[", "").replace("]", "").replace("{", "").replace("}", "").replace("/", "").replace("\\", "")
-                .replace("\"", "").replace("'", "").replace("`", "").replace("&", "").replace("@", "").replace("#", "")
+                .replace("[", "").replace("]", "").replace("{", "").replace("}", "").replace("\"", "")
+                .replace("'", "").replace("`", "").replace("&", "").replace("@", "").replace("#", "")
                 .replace("%", "").replace("!", "").replace("^", "").replace("*", "").replace("|", "");
     }
 
