@@ -20,8 +20,8 @@
       <file leaf-file-name="TestUnstructured.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/blobxml/TestUnstructured.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2903">
-              <caret line="255" column="71" lean-forward="true" selection-start-line="255" selection-start-column="71" selection-end-line="255" selection-end-column="71" />
+            <state relative-caret-position="4131">
+              <caret line="255" column="71" selection-start-line="255" selection-start-column="71" selection-end-line="255" selection-end-column="71" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -32,7 +32,7 @@
       <file leaf-file-name="TestCopyFiles.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/blobxml/TestCopyFiles.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
+            <state relative-caret-position="238">
               <caret line="20" column="31" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -41,29 +41,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FileProperty.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FileProperty.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/blobxml/FileProperty.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-38">
-              <caret line="66" column="5" lean-forward="true" selection-start-line="66" selection-start-column="5" selection-end-line="66" selection-end-column="5" />
+            <state relative-caret-position="523">
+              <caret line="84" selection-start-line="84" selection-end-line="84" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1344#1345#0" expanded="true" />
-                <element signature="e#1375#1376#0" expanded="true" />
-                <element signature="e#1410#1411#0" expanded="true" />
-                <element signature="e#1441#1442#0" expanded="true" />
-                <element signature="e#1476#1477#0" expanded="true" />
-                <element signature="e#1507#1508#0" expanded="true" />
-                <element signature="e#1546#1547#0" expanded="true" />
-                <element signature="e#1581#1582#0" expanded="true" />
-                <element signature="e#1853#1854#0" expanded="true" />
-                <element signature="e#1888#1889#0" expanded="true" />
-                <element signature="e#1926#1927#0" expanded="true" />
-                <element signature="e#1979#1980#0" expanded="true" />
-                <element signature="e#2604#2605#0" expanded="true" />
-                <element signature="e#2652#2653#0" expanded="true" />
-                <element signature="e#2693#2694#0" expanded="true" />
-                <element signature="e#2716#2717#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DemoThreading.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/programs/concepts/DemoThreading.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" column="18" lean-forward="true" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+              <folding>
+                <element signature="e#87#88#0" expanded="true" />
+                <element signature="e#108#109#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -72,8 +69,8 @@
       <file leaf-file-name="TestBlobs.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/blobxml/TestBlobs.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="29" lean-forward="true" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
+            <state relative-caret-position="204">
+              <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -120,6 +117,7 @@
         <option value="$PROJECT_DIR$/src/blobxml/TestCopyFiles.java" />
         <option value="$PROJECT_DIR$/src/blobxml/TestUnstructured.java" />
         <option value="$PROJECT_DIR$/src/blobxml/FileProperty.java" />
+        <option value="$PROJECT_DIR$/src/programs/concepts/DemoThreading.java" />
       </list>
     </option>
   </component>
@@ -134,7 +132,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -151,17 +148,26 @@
               <item name="File_Loader" type="b2602c69:ProjectViewProjectNode" />
               <item name="File_Loader" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="blobxml" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="File_Loader" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="File_Loader" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="programs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="File_Loader" type="b2602c69:ProjectViewProjectNode" />
+              <item name="File_Loader" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="programs" type="462c0819:PsiDirectoryNode" />
+              <item name="concepts" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="PackagesPane">
         <subPane>
           <expand>
@@ -173,6 +179,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -199,7 +206,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.TestUnstructured">
+  <component name="RunManager" selected="Application.DemoThreading">
     <configuration name="AllFiles" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="blobxml.AllFiles" />
       <module name="File_Loader" />
@@ -207,6 +214,17 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="blobxml.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
+    <configuration name="DemoThreading" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="programs.concepts.DemoThreading" />
+      <module name="File_Loader" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="programs.concepts.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -230,18 +248,6 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="blobxml.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-    </configuration>
-    <configuration name="RowCountMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.rowcountfromxml.RowCountMain" />
-      <module name="File_Loader" />
-      <option name="PROGRAM_PARAMETERS" value="&quot;D:\ETL\Output_XMLs&quot; &quot;ROW&quot;" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.rowcountfromxml.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -324,19 +330,19 @@
     <list>
       <item itemvalue="Application.TestUnstructured" />
       <item itemvalue="Application.XMLExtract" />
-      <item itemvalue="Application.RowCountMain" />
       <item itemvalue="Application.AllFiles" />
       <item itemvalue="Application.RenameFiles" />
       <item itemvalue="Application.FileCopy" />
       <item itemvalue="Application.TestCopyFiles" />
+      <item itemvalue="Application.DemoThreading" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.DemoThreading" />
         <item itemvalue="Application.TestCopyFiles" />
         <item itemvalue="Application.FileCopy" />
         <item itemvalue="Application.RenameFiles" />
         <item itemvalue="Application.AllFiles" />
-        <item itemvalue="Application.RowCountMain" />
       </list>
     </recent_temporary>
   </component>
@@ -365,7 +371,7 @@
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5161054" side_tool="true" weight="0.31319556" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4838946" visible="true" weight="0.31319556" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4838946" visible="true" weight="0.31319556" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Mongo Explorer" order="4" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.3290938" />
@@ -395,13 +401,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/blobxml/SipXml.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="1" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/job.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -673,9 +672,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="25" selection-start-line="25" selection-end-line="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -690,9 +686,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" selection-start-line="12" selection-end-line="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -717,16 +710,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="35" column="45" selection-start-line="35" selection-start-column="45" selection-end-line="35" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/blobxml/TestBlobs.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="29" lean-forward="true" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
+        <state relative-caret-position="204">
+          <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -735,8 +725,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/blobxml/TestUnstructured.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2903">
-          <caret line="255" column="71" lean-forward="true" selection-start-line="255" selection-start-column="71" selection-end-line="255" selection-end-column="71" />
+        <state relative-caret-position="4131">
+          <caret line="255" column="71" selection-start-line="255" selection-start-column="71" selection-end-line="255" selection-end-column="71" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -745,7 +735,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/blobxml/TestCopyFiles.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
+        <state relative-caret-position="238">
           <caret line="20" column="31" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -755,26 +745,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/blobxml/FileProperty.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-38">
-          <caret line="66" column="5" lean-forward="true" selection-start-line="66" selection-start-column="5" selection-end-line="66" selection-end-column="5" />
+        <state relative-caret-position="523">
+          <caret line="84" selection-start-line="84" selection-end-line="84" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1344#1345#0" expanded="true" />
-            <element signature="e#1375#1376#0" expanded="true" />
-            <element signature="e#1410#1411#0" expanded="true" />
-            <element signature="e#1441#1442#0" expanded="true" />
-            <element signature="e#1476#1477#0" expanded="true" />
-            <element signature="e#1507#1508#0" expanded="true" />
-            <element signature="e#1546#1547#0" expanded="true" />
-            <element signature="e#1581#1582#0" expanded="true" />
-            <element signature="e#1853#1854#0" expanded="true" />
-            <element signature="e#1888#1889#0" expanded="true" />
-            <element signature="e#1926#1927#0" expanded="true" />
-            <element signature="e#1979#1980#0" expanded="true" />
-            <element signature="e#2604#2605#0" expanded="true" />
-            <element signature="e#2652#2653#0" expanded="true" />
-            <element signature="e#2693#2694#0" expanded="true" />
-            <element signature="e#2716#2717#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/programs/concepts/DemoThreading.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="18" lean-forward="true" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+          <folding>
+            <element signature="e#87#88#0" expanded="true" />
+            <element signature="e#108#109#0" expanded="true" />
           </folding>
         </state>
       </provider>
