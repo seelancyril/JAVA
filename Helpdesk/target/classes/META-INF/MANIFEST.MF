@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: Helpdesk
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: P3
+Implementation-Vendor-Id: com.p3.helpdesk
+Build-Jdk: 1.8.0_171
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/Helpdesk
+Created-By: Maven Integration for Eclipse
+

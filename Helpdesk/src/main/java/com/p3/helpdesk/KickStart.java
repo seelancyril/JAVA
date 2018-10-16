@@ -19,7 +19,7 @@ public class KickStart {
 
 	public void run(String... args) throws Exception{
 
-		System.out.println(rep.findProduct("Archon"));
+//		System.out.println(rep.findOne("Archon"));
 
 	}
 
